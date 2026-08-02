@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+scheme: request-field (vnp_Version)
+current_version: 2.1.0
+note: >-
+  VNPAY does not publish a dated public changelog for the payment gateway; the
+  contract is versioned through the vnp_Version request field. The 2.1.0 line is
+  the current documented gateway version (succeeding the 2.0.x line).
+entries:
+- version: 2.1.0
+  date: null
+  breaking: null
+  highlights:
+  - Current documented VNPAY-QR / vpcpay gateway version.
+  - vnp_ parameter set with HMAC-SHA512 vnp_SecureHash signing.
+  - QR, domestic ATM/bank, international card, tokenization and installment flows.

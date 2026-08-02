@@ -1,0 +1,69 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+docs: https://sandbox.vnpayment.vn/apis/docs/bang-ma-loi/
+note: >-
+  VNPAY payment-gateway decline / response codes, returned on the vnp_ResponseCode
+  field of the Return URL and IPN callback. Descriptions are English translations
+  of the Vietnamese reference table published in the VNPAY developer docs. Values
+  captured verbatim from the published table.
+envelope_field: vnp_ResponseCode
+decline_codes:
+- code: '00'
+  meaning: Giao dịch thành công — Transaction successful.
+  action: Treat as paid after checksum + amount validation.
+  buyer_masked: false
+- code: '07'
+  meaning: >-
+    Trừ tiền thành công. Giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch
+    bất thường) — Funds deducted but transaction flagged as suspected fraud/abnormal.
+  action: Hold for manual review before fulfilment.
+  buyer_masked: false
+- code: '09'
+  meaning: >-
+    Card/account is not registered for InternetBanking at the issuing bank.
+  action: Ask customer to enable Internet Banking or use another method.
+  buyer_masked: false
+- code: '10'
+  meaning: Customer failed card/account authentication more than 3 times.
+  action: Customer must retry the transaction.
+  buyer_masked: false
+- code: '11'
+  meaning: Payment waiting time expired; transaction timed out.
+  action: Customer must create a new transaction.
+  buyer_masked: false
+- code: '12'
+  meaning: Thẻ/Tài khoản của khách hàng bị khóa — Customer card/account is locked.
+  action: Customer must contact their bank.
+  buyer_masked: false
+- code: '13'
+  meaning: >-
+    Nhập sai mật khẩu xác thực giao dịch (OTP) — Incorrect transaction OTP entered.
+  action: Customer must retry with the correct OTP.
+  buyer_masked: false
+- code: '24'
+  meaning: Khách hàng hủy giao dịch — Customer cancelled the transaction.
+  action: Offer retry.
+  buyer_masked: false
+- code: '51'
+  meaning: Tài khoản không đủ số dư — Insufficient account balance.
+  action: Customer must use another account/method.
+  buyer_masked: false
+- code: '65'
+  meaning: Tài khoản vượt quá hạn mức giao dịch trong ngày — Daily transaction limit exceeded.
+  action: Customer must retry another day or raise limit.
+  buyer_masked: false
+- code: '75'
+  meaning: Ngân hàng thanh toán đang bảo trì — Paying bank is under maintenance.
+  action: Customer must retry later.
+  buyer_masked: false
+- code: '79'
+  meaning: >-
+    Nhập sai mật khẩu thanh toán quá số lần quy định — Payment password entered
+    incorrectly too many times.
+  action: Customer must retry the transaction.
+  buyer_masked: false
+- code: '99'
+  meaning: Các lỗi khác — Other unspecified errors.
+  action: Retry or contact support.
+  buyer_masked: false

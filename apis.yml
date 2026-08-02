@@ -1,8 +1,16 @@
 aid: vnlife
 name: VNLIFE
-description: 'VNLIFE is a company surfaced as a portfolio company of softbank-vision-fund and added to
-  the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  VNLIFE is the Vietnamese technology and financial-services holding group whose
+  flagship business is VNPAY (Vietnam Payment Solution Joint Stock Company), the
+  leading electronic-payment provider in Vietnam. VNLIFE operates a payments and
+  lifestyle ecosystem spanning the VNPAY-QR payment gateway (integrated across
+  40+ banks and 15+ e-wallets), SmartPOS/PhonePOS acceptance hardware, the VNPAY
+  super-app, VnShop e-commerce, taxi booking, e-invoicing, and B2B payment
+  platforms serving 350,000+ merchants, 450,000+ acceptance points, and 60M+
+  users. The VNPAY payment gateway is exposed as a documented redirect/IPN HTTP
+  API (VNPAY-QR / vpcpay) secured with HMAC-SHA512 checksums. VNLIFE is backed by
+  investors including SoftBank Vision Fund and GIC.
 url: https://raw.githubusercontent.com/api-evangelist/vnlife/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,15 +18,101 @@ x-backed-by:
 - softbank-vision-fund
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://vnpay.vn/assets/images/logo-vnpay-qr.png
 tags:
 - Company
 - Fintech
-apis: []
+- Payments
+- Payment Gateway
+- QR Payments
+- E-Commerce
+- Vietnam
+- Financial Services
+apis:
+- name: VNPAY Payment Gateway
+  description: >-
+    The VNPAY-QR payment gateway (vpcpay) processes card, QR, ATM/bank-account
+    and international-card payments via a browser redirect plus server-to-server
+    IPN callback. Requests carry vnp_ parameters signed with an HMAC-SHA512
+    vnp_SecureHash; a merchant web API supports transaction query and refund.
+  humanURL: https://sandbox.vnpayment.vn/apis/
+  baseURL: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+  tags:
+  - Payments
+  - Payment Gateway
+  - QR Payments
+  properties:
+  - type: DeveloperPortal
+    url: https://sandbox.vnpayment.vn/apis/
+  - type: Documentation
+    url: https://sandbox.vnpayment.vn/apis/docs/gioi-thieu/gioi-thieu.html
+  - type: APIReference
+    url: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+  - type: GettingStarted
+    url: https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DomainSecurity
+  url: security/vnlife-domain-security.yml
+- type: DeveloperPortal
+  url: https://sandbox.vnpayment.vn/apis/
+- type: Documentation
+  url: https://sandbox.vnpayment.vn/apis/docs/gioi-thieu/gioi-thieu.html
+- type: APIReference
+  url: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+- type: Website
+  url: https://vnpay.vn
+- type: Support
+  url: https://vnpay.vn/lien-he
+- type: Blog
+  url: https://vnpay.vn/tin-tuc
+- type: GettingStarted
+  url: https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/
+- type: Sandbox
+  url: sandbox/vnlife-sandbox.yml
+- type: Authentication
+  url: authentication/vnlife-authentication.yml
+- type: Conventions
+  url: conventions/vnlife-conventions.yml
+- type: Idempotency
+  url: conventions/vnlife-conventions.yml
+- type: ErrorCatalog
+  url: errors/vnlife-problem-types.yml
+- type: DeclineCodes
+  url: errors/vnlife-decline-codes.yml
+- type: Lifecycle
+  url: lifecycle/vnlife-lifecycle.yml
+- type: Conformance
+  url: conformance/vnlife-conformance.yml
+- type: Compliance
+  url: https://sandbox.vnpayment.vn/apis/
+- type: ChangeLog
+  url: changelog/vnlife-changelog.yml
+- type: MCPServer
+  url: mcp/vnlife-mcp.yml
+- type: LLMsTxt
+  url: llms/vnlife-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

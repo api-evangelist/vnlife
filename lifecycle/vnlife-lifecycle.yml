@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+versioning:
+  scheme: request-field
+  field: vnp_Version
+  current: 2.1.0
+  docs: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+environments:
+  sandbox: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+  production: https://pay.vnpay.vn/vpcpay.html
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No RFC 8594 Sunset/Deprecation header contract published; versioning is via
+    the vnp_Version request field. Prior gateway versions (2.0.x) predate 2.1.0.
+sla:
+  url: null
+  uptime_target: null
+status_page: null

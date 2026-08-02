@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/vnpay-demo/
+docs: https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder
+note: >-
+  VNPAY publishes a full sandbox with a hosted "try it now" order creator. Test
+  values below are published verbatim in the VNPAY demo docs; ONLY these listed
+  cards function in the test environment.
+environments:
+  sandbox:
+    payment_url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
+    merchant_api: https://sandbox.vnpayment.vn/merchant_webapi/api/transaction
+    try_it_now: https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder
+  production:
+    payment_url: https://pay.vnpay.vn/vpcpay.html
+test_cards:
+  domestic:
+  - bank: NCB
+    card_number: '9704198526191432198'
+    cardholder: NGUYEN VAN A
+    issue_date: '07/15'
+    otp: '123456'
+    result: success
+  international:
+  - scheme: VISA
+    threeds: false
+    card_number: '4456530000001005'
+    cvc: '123'
+    expiry: '12/26'
+  - scheme: MasterCard
+    threeds: true
+    card_number: '5200000000001096'
+    cvc: '123'
+    expiry: '12/26'
+  - scheme: JCB
+    threeds: false
+    card_number: '3337000000000008'
+    cvc: '123'
+    expiry: '12/26'
+  international_common:
+    cardholder: NGUYEN VAN A
+    email: test@gmail.com
+    address: 22 Lang Ha, Ha Noi

@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+format: vnpay-response-code
+note: >-
+  VNPAY does not use RFC 9457 problem+json. Status is signalled in structured
+  vnp_ response fields on the Return URL / IPN callback and in the merchant
+  web API JSON. This catalog captures the merchant-facing IPN acknowledgement
+  codes (RspCode) and the transaction-status codes. Card-level decline reasons
+  are in errors/vnlife-decline-codes.yml.
+ipn_rsp_codes:
+  envelope_field: RspCode
+  description: >-
+    JSON acknowledgement the merchant IPN endpoint must return to VNPAY after
+    validating the checksum, order existence, and amount. 01/04/97/99 trigger
+    VNPAY retry.
+  codes:
+  - code: '00'
+    title: Confirm Success
+    detail: Merchant successfully received and processed the update.
+  - code: '01'
+    title: Order not found
+    detail: Order does not exist in the merchant system.
+  - code: '02'
+    title: Order already confirmed
+    detail: Transaction was previously processed (idempotent duplicate guard).
+  - code: '04'
+    title: Invalid amount
+    detail: Amount mismatch detected between order and callback.
+  - code: '97'
+    title: Invalid signature
+    detail: vnp_SecureHash checksum validation failed.
+  - code: '99'
+    title: Unknown error
+    detail: Unexpected system error.
+transaction_status:
+  envelope_field: vnp_TransactionStatus
+  codes:
+  - code: '00'
+    title: Successful
+  - code: '01'
+    title: Incomplete transaction
+  - code: '02'
+    title: Error
+  - code: '04'
+    title: Reversed — funds deducted, transaction pending
+  - code: '07'
+    title: Fraud suspected
+  - code: '09'
+    title: Refund rejected

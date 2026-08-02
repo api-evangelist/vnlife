@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+authentication:
+  style: HMAC-SHA512 checksum (vnp_SecureHash) + merchant vnp_TmnCode
+  ref: authentication/vnlife-authentication.yml
+transport:
+  payment: HTTP GET redirect to vpcpay.html with vnp_ query parameters
+  merchant_api: HTTP POST JSON to /merchant_webapi/api/transaction (query, refund)
+  ipn: server-to-server GET callback; merchant returns JSON {RspCode, Message}
+idempotency:
+  supported: true
+  mechanism: >-
+    Merchants must generate a vnp_TxnRef that is unique per day; VNPAY and the
+    merchant IPN handler both guard against duplicate confirmation. The IPN
+    contract returns RspCode 02 ("Order already confirmed") when a transaction
+    reference has already been processed, giving a merchant-reference-scoped
+    idempotency guarantee across retries.
+  key_field: vnp_TxnRef
+  duplicate_signal: RspCode 02 (Order already confirmed)
+  ref: errors/vnlife-problem-types.yml
+amount:
+  encoding: integer, value multiplied by 100 (no decimals)
+  currency: VND
+datetime:
+  format: yyyyMMddHHmmss
+  timezone: GMT+7 (Asia/Ho_Chi_Minh)
+  fields: [vnp_CreateDate, vnp_ExpireDate]
+versioning:
+  field: vnp_Version
+  current: 2.1.0
+  ref: lifecycle/vnlife-lifecycle.yml
+error_envelope:
+  style: structured vnp_ response fields (not RFC 9457)
+  fields: [vnp_ResponseCode, vnp_TransactionStatus]
+  ref: errors/vnlife-decline-codes.yml

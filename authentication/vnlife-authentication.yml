@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
+docs: https://sandbox.vnpayment.vn/apis/docs/huong-dan-tich-hop/
+summary:
+  types: [checksum-signature, merchant-credential]
+  transport: query-string (redirect) + server-to-server IPN
+  scheme: HMAC-SHA512 message signature
+note: >-
+  VNPAY has no OAuth/API-key bearer flow. Merchants are provisioned a Terminal
+  code (vnp_TmnCode) plus a secret hash key (vnp_HashSecret). Every request and
+  callback is signed with an HMAC-SHA512 checksum over the alphabetically-sorted,
+  URL-encoded vnp_ parameter set (excluding vnp_SecureHash), placed in
+  vnp_SecureHash. The receiver recomputes and compares to authenticate.
+schemes:
+- name: MerchantTerminal
+  type: credential
+  parameter: vnp_TmnCode
+  description: Merchant/terminal identifier issued by VNPAY on onboarding.
+- name: SecureHash
+  type: signature
+  algorithm: HMAC-SHA512
+  parameter: vnp_SecureHash
+  secret: vnp_HashSecret
+  canonicalization: >-
+    Sort vnp_ parameters alphabetically by key, URL-encode values, concatenate
+    key=value pairs with '&' (excluding vnp_SecureHash and vnp_SecureHashType),
+    then HMAC-SHA512 with the merchant HashSecret.
+  applies_to:
+  - Payment URL creation (vpcpay redirect)
+  - Return URL verification
+  - IPN callback verification
+  - Merchant web API (transaction query / refund)

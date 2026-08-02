@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://sandbox.vnpayment.vn/apis/
+standards:
+- id: pci-dss
+  version: 3.2.1
+  level: Level 1
+  conforms: true
+  evidence: >-
+    VNPAY developer portal states the payment gateway meets PCI DSS 3.2.1
+    Level 1 and State Bank of Vietnam payment standards.
+- id: sbv-payment-standard
+  conforms: true
+  evidence: Meets State Bank of Vietnam (Ngân hàng Nhà nước Việt Nam) intermediary payment standards.
+- id: tokenization
+  conforms: true
+  evidence: Card data protected via tokenization rather than raw storage.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Uses structured vnp_ response codes, not application/problem+json.
+- id: oauth2
+  conforms: false
+  evidence: Authentication is HMAC-SHA512 checksum + merchant terminal code, no OAuth2.
+compliance:
+  program: PCI DSS 3.2.1 Level 1
+  docs: https://sandbox.vnpayment.vn/apis/
