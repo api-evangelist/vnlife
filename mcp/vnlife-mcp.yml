@@ -2,19 +2,17 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: https://sandbox.vnpayment.vn/apis/docs/thanh-toan-pay/pay.html
-note: >-
-  No official VNPAY MCP server was found. This is a candidate tool list derived
-  from the documented VNPAY payment-gateway operations, as a starting point for
-  an agent integration. Not an authoritative provider offering.
+note: No official VNPAY MCP server was found. This is a candidate tool list derived from the documented
+  VNPAY payment-gateway operations, as a starting point for an agent integration. Not an authoritative
+  provider offering.
 server:
   name: vnpay
   transport: http
   url: null
 tools:
 - name: create_payment_url
-  description: >-
-    Build a signed vpcpay redirect URL (vnp_ parameters + HMAC-SHA512
-    vnp_SecureHash) to send a customer to the VNPAY gateway.
+  description: Build a signed vpcpay redirect URL (vnp_ parameters + HMAC-SHA512 vnp_SecureHash) to send
+    a customer to the VNPAY gateway.
   source_operation: docs/thanh-toan-pay/pay.html#create-payment
 - name: verify_return
   description: Verify the vnp_SecureHash checksum on the Return URL query and read vnp_ResponseCode.
@@ -28,3 +26,9 @@ tools:
 - name: refund_transaction
   description: Request a full or partial refund via the merchant web API.
   source_operation: /merchant_webapi/api/transaction#refund
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census
