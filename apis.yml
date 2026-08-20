@@ -42,6 +42,15 @@ tags:
 - QR Payments
 - E-Commerce
 - Vietnam
+- Financial-Services
+tags_raw:
+- Company
+- Fintech
+- Payments
+- Payment Gateway
+- QR Payments
+- E-Commerce
+- Vietnam
 - Financial Services
 apis:
 - name: VNPAY Payment Gateway
